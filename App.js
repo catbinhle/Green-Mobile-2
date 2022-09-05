@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, TextInput, View } from 'react-native';
 
 export default function App() {
-  // Binh comment
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -14,10 +13,9 @@ export default function App() {
           source={require('./assets/welcomes/welcome1.png')}/>
         <View style={{
           flex: 1,
-          alignItems: 'center',
-          justifyContent: 'flex-start'
+          width: '100%',
         }}>
-          <Text style={{
+          {/* <Text style={{
             fontWeight:'800',
             fontSize: 18,
           }}>Best Service</Text>
@@ -27,14 +25,32 @@ export default function App() {
             marginTop: 16
           }}>
             We promise to provide the best services when it comes to customer experiences.
-          </Text>
-          <Text style={{
-            fontSize: 14,
-            textAlign: 'center',
-            marginTop: 16
-          }}>
-            version 1.0
-          </Text>
+          </Text> */}
+          <View style={{
+                height: 40,
+                backgroundColor: 'white',
+                borderColor: 'grey',
+                borderWidth: 1,
+                margin: 16,
+                padding: 8,
+                alignItems: 'flex-start',
+                justifyContent: 'center',
+                borderRadius: 4
+              }}>
+            <TextInput 
+              style={{
+                fontSize: 14,
+                fontWeight: '600'
+              }}
+              onChangeText={(text) => {
+                console.log('------- ', text)
+              }}
+              placeholder={'Enter text'}
+              // value={'LE CAT BINH'}
+            />
+          </View>
+
+
         </View>
       </View>
     </View>
@@ -55,6 +71,7 @@ const styles = StyleSheet.create({
     width: 240, 
     height: 240, 
     resizeMode: 'contain', 
+    flex: 1
   },
   centerObj: {
     width: '100%', 
