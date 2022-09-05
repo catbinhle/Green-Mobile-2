@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  // Binh comment
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
