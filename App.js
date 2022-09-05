@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Image, View, Text } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
@@ -41,6 +41,13 @@ export default function App() {
             marginTop: 16
           }}>
             We promise to provide the best services when it comes to customer experiences.
+          </Text>
+          <Text style={{
+            fontSize: 14,
+            textAlign: 'center',
+            marginTop: 16
+          }}>
+            version 1.0
           </Text>
         </View>
       </View>
