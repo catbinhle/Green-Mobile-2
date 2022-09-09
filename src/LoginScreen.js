@@ -4,11 +4,21 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import EnterText from './components/EnterText';
 
-function LoginScreen() {
+function LoginScreen({
+    onLogin
+}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
+
+    const hanldeLogin = () => {
+        if (email === '' || password === '') {
+            setError(true)
+        } else {
+            onLogin()
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -61,9 +71,7 @@ function LoginScreen() {
                         shadowRadius: 4,
                         elevation: 10 // only Android
                     }}
-                        onPress={() => {
-                            setError(!error)
-                        }}
+                        onPress={hanldeLogin}
                     >
                         <Text style={{
                             color: '#ffffff',
