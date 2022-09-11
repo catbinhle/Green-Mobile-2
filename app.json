@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Demo",
-    "slug": "Demo",
+    "name": "Project",
+    "slug": "Project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,6 +10,7 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,6 +26,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
+    
     },
     "web": {
       "favicon": "./assets/favicon.png"
