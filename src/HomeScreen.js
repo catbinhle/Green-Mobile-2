@@ -1,13 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-function HomeScreen() {
+import PurchaseScreen from './PurchaseScreen';
+import SaleScreen from './SaleScreen';
 
-    return (
+const homeListScreen = ['Home', 'Sale', 'Purchase']
+
+function HomeScreen({
+    logout
+}) {
+
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const handleLogout = () => {
+        logout()
+    }
+
+    const handleScreenPress = (index) => {
+        setCurrentIndex(index)
+    }
+
+    const homeView = () => (
         <View style={styles.container}>
             <Text>Welcome Home Screen</Text>
+            <TouchableOpacity style={{
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={() => handleScreenPress(1)}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Sale</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={() => handleScreenPress(2)}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Purchase</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={handleLogout}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Logout</Text>
+            </TouchableOpacity>
         </View>
+    )
+
+    return (
+        currentIndex === 0 ? homeView() : currentIndex === 1 ? <SaleScreen /> : <PurchaseScreen />
     )
 }
 

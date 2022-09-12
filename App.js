@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import HomeScreen from './src/HomeScreen';
 import LoginScreen from './src/LoginScreen';
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false)
-  const handleLogin = () => {
-    setIsLogin(true)
+
+  useEffect(() => {
+
+  }, [])
+
+  const handleLogin = ({payload}) => {
+    setIsLogin(payload)
   }
   return (
     isLogin 
     ? 
-    <HomeScreen /> 
+    <HomeScreen logout={() => handleLogin({payload: false})}/> 
     :
-    <LoginScreen onLogin={handleLogin}/>
+    <LoginScreen onLogin={() => handleLogin({payload: true})}/>
   )
 }
