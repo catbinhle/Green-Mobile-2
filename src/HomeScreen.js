@@ -5,7 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PurchaseScreen from './PurchaseScreen';
 import SaleScreen from './SaleScreen';
 
-const homeListScreen = ['Home', 'Sale', 'Purchase']
+// const homeListScreen = ['Home', 'Sale', 'Purchase']
 
 function HomeScreen({
     logout
