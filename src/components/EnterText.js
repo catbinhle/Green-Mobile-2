@@ -6,10 +6,11 @@ function EnterText({
     isSecurity = false,
     placeholder,
     onChange,
-    error = false
+    error = false,
+    style,
 }) {
     return (
-        <View style={{
+        <View style={[{
             marginTop: 10,
             height: 52,
             backgroundColor: 'white',
@@ -28,7 +29,7 @@ function EnterText({
             elevation: 10, // only Android
             borderColor: 'red',
             borderWidth: error ? 1 : 0
-        }}>
+        },style]}>
             <TextInput
                 style={{
                     fontSize: 15,

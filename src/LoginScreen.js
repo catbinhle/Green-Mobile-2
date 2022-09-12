@@ -79,12 +79,12 @@ function LoginScreen({
                             fontSize: 15
                         }}>Signin</Text>
                     </TouchableOpacity>
-                    <Text style={{
+                    {/* <Text style={{
                         fontWeight: '700',
                         fontSize: 25,
                     }}>
                         {email} {email.length > 0 && password.length > 0 && 'and'} {password}
-                    </Text>
+                    </Text> */}
                 </View>
             </View>
         </View>
