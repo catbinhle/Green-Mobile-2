@@ -20,6 +20,16 @@ function LoginScreen({
         }
     }
 
+    const validate = (text) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === false) {
+            setEmail("Validate")
+        }
+        else {
+            setEmail("Not validate")
+        }
+      }
+
     return (
         <View style={styles.container}>
             <Image style={styles.backgroundImg}
@@ -51,9 +61,21 @@ function LoginScreen({
                     <EnterText error={error} style={{}} placeholder={'Email'} onChange={(text) => {
                         setEmail(text)
                     }}/>
+                    <Text style={{
+                        fontWeight: '700',
+                        fontSize: 25,
+                    }}>
+                        
+                    </Text>
                     <EnterText isSecurity={true} placeholder={'Password'} onChange={(text) => {
                         setPassword(text)
                     }}/>
+                    <Text style={{
+                        fontWeight: '700',
+                        fontSize: 25,
+                    }}>
+                        
+                    </Text>
                     <TouchableOpacity style={{
                         marginHorizontal: 32,
                         marginTop: 10,
