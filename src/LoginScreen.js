@@ -4,9 +4,41 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import EnterText from './components/EnterText';
 
+// const useTracking = () => {
+//     const [tracking, setTracking] = useState();
+  
+//     const onTracking = (payload) => setTracking(payload)
+  
+//     return [ tracking, onTracking ];
+//   }
+
+// const useTracking = Component => {
+//     console.log('**********')
+//     return class ComponentWithTracking extends React.Component {
+//       state = {
+//         tracking: null,
+//       };
+  
+//       onTracking = () => {
+//         this.setState({ tracking: 'ABC' })
+//       }
+  
+//       render() {
+//         const { tracking } = this.state
+  
+//         return (
+//           <Component {...this.prop} tracking={tracking} onTracking={this.onTracking} />
+//         );
+//       }
+//     };
+//   };
+
+// function Login({
+//     onLogin
+// }) {
 function LoginScreen({
-    onLogin
-}) {
+        onLogin
+}){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
