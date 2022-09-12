@@ -2,13 +2,7 @@ import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 
-function SaleScreen({
-    logout
-}) {
-
-    const handleLogout = () => {
-        logout()
-    }
+function SaleScreen() {
 
     return (
         <View style={styles.container}>
