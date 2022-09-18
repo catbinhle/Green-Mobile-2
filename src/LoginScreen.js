@@ -1,18 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import EnterText from './components/EnterText';
 
-function LoginScreen({
-    onLogin
-}) {
+// const useTracking = () => {
+//     const [tracking, setTracking] = useState();
+  
+//     const onTracking = (payload) => setTracking(payload)
+  
+//     return [ tracking, onTracking ];
+//   }
 
+const useTracking = (Component) => {
+    
+    const WrapperComponent = (props) => {
+        
+        // const newProps = Object.keys(props).reduce((wrappedProps, key) => {
+        //     const value = props[key];
+        //     if (typeof value === `function`) {
+        //         return {
+        //             ...wrappedProps,
+        //             [key]: (...args) => {
+        //                 // console.log(`Event for: ${idKey} on ${key} with args ${args}`);
+        //                 value(...args)
+        //                 console.log('*******************')
+        //             }
+        //         };
+        //     } else {
+        //         console.log('*******************')
+        //         return { ... wrappedProps, [key]: value}
+        //     }
+        //     // console.log(Component)
+        // }, {})
+        useEffect(() => console.log('*******************'), [])
+        return <Component {...props}/>
+    }
+
+    return WrapperComponent
+}
+
+// function Login({
+//     onLogin
+// }) {
+function Login({
+        onLogin
+}){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
 
-    const hanldeLogin = () => {
+    console.log('---------------')
+
+    const handleLogin = () => {
         if (email === '' || password === '') {
             setError(true)
         } else {
@@ -52,7 +92,7 @@ function LoginScreen({
                         fontWeight: '400',
                         marginTop: 4
                     }}>
-                        {'Sigin to contunue'}
+                        {'Sign in to continue'}
                     </Text>
                 </View>
                 <View style={{
@@ -61,6 +101,7 @@ function LoginScreen({
                     <EnterText error={error} style={{}} placeholder={'Email'} onChange={(text) => {
                         setEmail(text)
                     }}/>
+<<<<<<< HEAD
                     <Text style={{
                         fontWeight: '700',
                         fontSize: 25,
@@ -68,6 +109,9 @@ function LoginScreen({
                         
                     </Text>
                     <EnterText isSecurity={true} placeholder={'Password'} onChange={(text) => {
+=======
+                    <EnterText error={error} isSecurity={true} placeholder={'Password'} onChange={(text) => {
+>>>>>>> 62960f47fb38ff714acba1bc21e8923a3ea7e036
                         setPassword(text)
                     }}/>
                     <Text style={{
@@ -93,13 +137,13 @@ function LoginScreen({
                         shadowRadius: 4,
                         elevation: 10 // only Android
                     }}
-                        onPress={hanldeLogin}
+                        onPress={handleLogin}
                     >
                         <Text style={{
                             color: '#ffffff',
                             fontWeight: '700',
                             fontSize: 15
-                        }}>Signin</Text>
+                        }}>Sign in</Text>
                     </TouchableOpacity>
                     <Text style={{
                         fontWeight: '700',
@@ -145,5 +189,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
     },
 });
+
+const LoginScreen = useTracking(Login)
 
 export default LoginScreen
