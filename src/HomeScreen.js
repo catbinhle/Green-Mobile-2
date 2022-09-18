@@ -1,72 +1,131 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-import PurchaseScreen from './PurchaseScreen';
-import SaleScreen from './SaleScreen';
+import {
+  Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity,
+  View,
+} from 'react-native';
 
 // const homeListScreen = ['Home', 'Sale', 'Purchase']
+const width = Dimensions.get('window').width
 
 function HomeScreen({
-    logout
 }) {
-
-    const [currentIndex, setCurrentIndex] = useState(0)
-
-    const handleLogout = () => {
-        logout()
-    }
-
-    const handleScreenPress = (index) => {
-        setCurrentIndex(index)
-    }
 
     const homeView = () => (
         <View style={styles.container}>
-            <Text>Welcome Home Screen</Text>
-            <TouchableOpacity style={{
 
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-                onPress={() => handleScreenPress(1)}
-            >
-                <Text style={{
-                    fontWeight: '700',
-                    fontSize: 15
-                }}>Sale</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{
-
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-                onPress={() => handleScreenPress(2)}
-            >
-                <Text style={{
-                    fontWeight: '700',
-                    fontSize: 15
-                }}>Purchase</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{
-
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-                onPress={handleLogout}
-            >
-                <Text style={{
-                    fontWeight: '700',
-                    fontSize: 15
-                }}>Logout</Text>
-            </TouchableOpacity>
         </View>
     )
 
+    const renderItemView = ({ item, index }) => {
+        return (
+            <TouchableOpacity style={{
+                flex: (index !== Data.length - 1) && 1,
+                width: (index === Data.length - 1) && (width - 8*4)/3,
+                marginHorizontal: 4,
+                marginVertical: 4,
+                borderRadius: 10,
+                shadowColor: '#8C8C98',
+                shadowOffset: {
+                    width: 1,
+                    height: 1
+                },
+                shadowOpacity: 0.4,
+                shadowRadius: 4,
+                elevation: 10, // only Android
+                borderColor: 'grey',
+                borderWidth: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                backgroundColor: 'red'
+
+            }}
+            onPress={() => {
+
+            }}
+            >
+                <Image 
+                    source={{uri: item.image}}
+                    style={{
+                        flex: 1,
+                        height: (width - 40) * 2 / 3 ,
+                        resizeMode: 'cover'
+                    }}
+                />
+                {/* <View style={{
+                    flex: 4
+                }}>
+                    <Text>{item.name}</Text>
+                </View>  */}
+                {/* <Icon name="angle-right" size={30} color="black" /> */}
+            </TouchableOpacity>
+        )
+    }
+
     return (
-        currentIndex === 0 ? homeView() : currentIndex === 1 ? <SaleScreen /> : <PurchaseScreen />
+        <SafeAreaView>
+            <Text style={{
+                fontWeight: '700',
+                fontSize: 15,
+                margin: 20
+            }}>Maui bay Popular Destination</Text>
+            <FlatList
+                style={{
+                    marginHorizontal: 4
+                }}
+                numColumns={3}
+                data={Data}
+                renderItem={renderItemView}
+                keyExtractor={(item, index) => index.toString()}
+            />
+
+        </SafeAreaView>
     )
 }
+
+const Data = [
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+    {
+        name: 'Phu Quoc - Kien Giang - Vietnam',
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+    },
+]
 
 const styles = StyleSheet.create({
     container: {

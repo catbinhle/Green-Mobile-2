@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import HomeScreen from './src/HomeScreen';
-import LoginScreen from './src/LoginScreen';
+import { LogBox } from 'react-native';
+
+import Navigator from './src/navigations/Navigator';
+
+LogBox.ignoreAllLogs()
+LogBox.ignoreLogs(['Warning: ...'])
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false)
@@ -14,10 +18,9 @@ export default function App() {
     setIsLogin(payload)
   }
   return (
-    isLogin 
-    ? 
-    <HomeScreen logout={() => handleLogin({payload: false})}/> 
-    :
-    <LoginScreen onLogin={() => handleLogin({payload: true})}/>
+    <Navigator 
+      isLogin={isLogin}
+      events = {(payload) => handleLogin({payload: payload})}
+    />
   )
 }
