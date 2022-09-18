@@ -1,14 +1,15 @@
-import { View, Text, TextInput, TouchableOpacity, Image, Pressable } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Image, Pressable, Keyboard } from 'react-native'
 import React from 'react'
 import styles from './styles'
-import App from '../App'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import HomeScreen from './HomeScreen'
 
 const loginScreen = ({
-    onLogin
+    onLogin,
+    navigation
 }) => {
     const [email,setEmail] = useState('')
     const [pass,setPass] = useState('')
@@ -26,7 +27,8 @@ const loginScreen = ({
             alert('Please input your password')
         }
         else
-            onLogin()
+            //onLogin()
+            navigation.navigate('HomeScreen')
     }
 
     const handleShowPass = () => {

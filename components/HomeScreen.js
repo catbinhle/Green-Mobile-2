@@ -3,12 +3,17 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function HomeScreen({
-    onLogout
+    onLogout,
+    navigation
 }) {
     const handleLogout = () => {
         
         alert("Sign out complete")
-        onLogout()
+        navigation.goBack('LoginScreen')
+    }
+
+    const handlePackage = () => {
+        navigation.navigate('PackageScreen')
     }
   return (
     <View style={{
@@ -147,22 +152,41 @@ export default function HomeScreen({
             }} source={require('../assets/background.jpg')}/>
           </View>
 
-        <TouchableOpacity onPress={handleLogout}>  
-          <View style={{
-            justifyContent:'center',
-            alignItems:'center',
-            backgroundColor:'lightgreen',
-            borderRadius:20,
-            width:100,
-            height:50,
-            alignSelf:'center'
-          }}>
-            <Text style={{
-              fontSize:20,
-              textAlign:'center'
-            }}>Log out</Text>
-          </View>
-        </TouchableOpacity>  
+        <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+            <TouchableOpacity onPress={handleLogout}>  
+              <View style={{
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:'lightgreen',
+                borderRadius:20,
+                width:100,
+                height:50,
+                alignSelf:'center'
+              }}>
+                <Text style={{
+                  fontSize:20,
+                  textAlign:'center'
+                }}>Log out</Text>
+              </View>
+            </TouchableOpacity>  
+
+            <TouchableOpacity onPress={handlePackage}>  
+              <View style={{
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:'lightgreen',
+                borderRadius:20,
+                width:100,
+                height:50,
+                alignSelf:'center'
+              }}>
+                <Text style={{
+                  fontSize:20,
+                  textAlign:'center'
+                }}>Package</Text>
+              </View>
+            </TouchableOpacity>  
+        </View>
 
         </View>    
     </View>

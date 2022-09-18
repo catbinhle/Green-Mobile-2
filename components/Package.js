@@ -2,8 +2,12 @@ import { View, Text, Image, TextInput, FlatList, ImageBackground, ScrollView, To
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import HomeScreen from './HomeScreen'
+import loginScreen from './LoginScreen';
 
-export default function PackageScreen() {
+export default function PackageScreen({ navigation }) {
     const [selectedId, setSelectedId] = useState(null)
 
     const renderView = ({item}) => (
@@ -34,6 +38,15 @@ export default function PackageScreen() {
         </TouchableOpacity>
     )
 
+    const handleLogout = () => {
+          
+        alert("Sign out complete")
+        navigation.popToTop()
+    }
+
+    const handleGoBack = () => {
+        navigation.goBack('HomeScreen')
+    }
   return (
     <View style={styles.container}>
         <View style={styles.top}>
@@ -58,6 +71,42 @@ export default function PackageScreen() {
             keyExtractor={(item,index) => index.toString()}
           />
       </View>
+
+      <View style={{flexDirection:'row', justifyContent:'space-around', marginBottom:20}}>
+            <TouchableOpacity onPress={handleLogout}>  
+              <View style={{
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:'lightgreen',
+                borderRadius:20,
+                width:100,
+                height:50,
+                alignSelf:'center'
+              }}>
+                <Text style={{
+                  fontSize:20,
+                  textAlign:'center'
+                }}>Log out</Text>
+              </View>
+            </TouchableOpacity>  
+
+            <TouchableOpacity onPress={handleGoBack}>  
+              <View style={{
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:'lightgreen',
+                borderRadius:20,
+                width:100,
+                height:50,
+                alignSelf:'center'
+              }}>
+                <Text style={{
+                  fontSize:20,
+                  textAlign:'center'
+                }}>Go back</Text>
+              </View>
+            </TouchableOpacity>  
+        </View>
     </View>
   )
 }
