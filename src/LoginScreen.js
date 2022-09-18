@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -12,36 +12,45 @@ import EnterText from './components/EnterText';
 //     return [ tracking, onTracking ];
 //   }
 
-// const useTracking = Component => {
-//     console.log('**********')
-//     return class ComponentWithTracking extends React.Component {
-//       state = {
-//         tracking: null,
-//       };
-  
-//       onTracking = () => {
-//         this.setState({ tracking: 'ABC' })
-//       }
-  
-//       render() {
-//         const { tracking } = this.state
-  
-//         return (
-//           <Component {...this.prop} tracking={tracking} onTracking={this.onTracking} />
-//         );
-//       }
-//     };
-//   };
+const useTracking = (Component) => {
+    
+    const WrapperComponent = (props) => {
+        
+        // const newProps = Object.keys(props).reduce((wrappedProps, key) => {
+        //     const value = props[key];
+        //     if (typeof value === `function`) {
+        //         return {
+        //             ...wrappedProps,
+        //             [key]: (...args) => {
+        //                 // console.log(`Event for: ${idKey} on ${key} with args ${args}`);
+        //                 value(...args)
+        //                 console.log('*******************')
+        //             }
+        //         };
+        //     } else {
+        //         console.log('*******************')
+        //         return { ... wrappedProps, [key]: value}
+        //     }
+        //     // console.log(Component)
+        // }, {})
+        useEffect(() => console.log('*******************'), [])
+        return <Component {...props}/>
+    }
+
+    return WrapperComponent
+}
 
 // function Login({
 //     onLogin
 // }) {
-function LoginScreen({
+function Login({
         onLogin
 }){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
+
+    console.log('---------------')
 
     const handleLogin = () => {
         if (email === '' || password === '') {
@@ -82,7 +91,7 @@ function LoginScreen({
                     <EnterText error={error} style={{}} placeholder={'Email'} onChange={(text) => {
                         setEmail(text)
                     }}/>
-                    <EnterText isSecurity={true} placeholder={'Password'} onChange={(text) => {
+                    <EnterText error={error} isSecurity={true} placeholder={'Password'} onChange={(text) => {
                         setPassword(text)
                     }}/>
                     <TouchableOpacity style={{
@@ -154,5 +163,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
     },
 });
+
+const LoginScreen = useTracking(Login)
 
 export default LoginScreen
