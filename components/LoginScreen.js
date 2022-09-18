@@ -2,7 +2,10 @@ import { View, Text, TextInput, TouchableOpacity, Image, Pressable } from 'react
 import React from 'react'
 import styles from './styles'
 import App from '../App'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const loginScreen = ({
     onLogin
@@ -88,14 +91,17 @@ const loginScreen = ({
             <TextInput 
             onChangeText={(pass) =>{setPass(pass)}}
             secureTextEntry={secure} 
-            style={{fontSize:15}} 
+            style={{fontSize:15,width:'92%'}} 
             placeholder='Password'
             ></TextInput>
 
             <TouchableOpacity onPress={handleShowPass} style={{alignItems:'center',justifyContent:'center'}}>
-              <View style={{backgroundColor:'#0E4A86', borderRadius:50,height:25,width:25, justifyContent:'center', alignItems:'center'}}>
-                {secure?<Image source={require('../assets/show.jpg')}/>:<Text style={{color:'white'}}>H</Text>}
-              </View>
+                {
+                secure?
+                <Icon name="eye" size={25} color="black" />
+                :
+                <Icon name="eye-slash" size={25} color="black"/>
+                }
             </TouchableOpacity>
 
         </View>
