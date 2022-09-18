@@ -1,22 +1,30 @@
 import React from 'react';
-
-import { SafeAreaView,StyleSheet, Text, View, FlatList, Image } from 'react-native';
+import { SafeAreaView , StyleSheet, Text, View, FlatList, Image } from 'react-native';
 
 const Item = ({item}) => {
-    return(
-    <View style={styles.item}>
+        return(
+    <View 
+    // style={styles.item}
+    style={{
+        flex:1,
+        marginBottom:16,
+        marginHorizontal: 8,
+        //width:"45%",
+        height:200
+    }}
+    >
     <Image
-        style={{width: "100%",height:200}}
+        style={{width: "100%", height:"80%"}}
         source={item.img}
-        resizeMode = {'cover'}
+        resizeMode = {"cover"}
       />
-    <Text style={{color: 'white', fontSize:20}}>{item.name}</Text>
-    <Text style={{color: 'white', fontSize:9}}>{item.desc}</Text>
+    <Text style={{color: 'black', fontSize:20}}>{item.name}</Text>
+    <Text style={{color: 'black', fontSize:9}}>{item.desc}</Text>
     </View>
     );
     }
 
-function PurchaseScreen() {
+function SaleScreen() {
     const DATA = [
         {
           id: '20',
@@ -60,20 +68,45 @@ function PurchaseScreen() {
               desc: 'Hau o',
               img:require('../assets/phanthiet.jpg')
             },
+        {
+            id: '64',
+            name: 'Vinh Long',
+            desc: 'Vua o',
+            img:require('../assets/hue.jpg')
+            },
+            {
+                id: '65',
+                name: 'Can Tho',
+                desc: 'Hau o',
+                img:require('../assets/phanthiet.jpg')
+            },
+            {
+                id: '68',
+                name: 'Kien Giang',
+                desc: 'Hau o',
+                img:require('../assets/phanthiet.jpg')
+            },         
+            {
+                id: '69',
+                name: 'Ca Mau',
+                desc: 'Hau o',
+                img:require('../assets/phanthiet.jpg')
+            },                              
       ];
       
       const renderItem = ({item})=>(
         <Item item={item}/>
         );
-    
-    return (        
+    return (
          <SafeAreaView>
             <FlatList
+            showsHorizontalScrollIndicator={false}
             data={DATA}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
+            numColumns={3}
             />
-         </SafeAreaView>            
+         </SafeAreaView>     
     )
 }
 
@@ -112,16 +145,17 @@ const styles = StyleSheet.create({
     },
     item: {
         backgroundColor: 'green',
-        //width:"100%",
+        width:"100%",
+        height:100,
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 8,
         borderRadius: 8,
         shadowColor: '#000',
-        shadowOffset: { width: 3, height: 3 },
+        shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
         },
 });
 
-export default PurchaseScreen
+export default SaleScreen

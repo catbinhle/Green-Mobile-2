@@ -4,15 +4,46 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import EnterText from './components/EnterText';
 
-function LoginScreen({
-    onLogin
-}) {
+// const useTracking = () => {
+//     const [tracking, setTracking] = useState();
+  
+//     const onTracking = (payload) => setTracking(payload)
+  
+//     return [ tracking, onTracking ];
+//   }
 
+// const useTracking = Component => {
+//     console.log('**********')
+//     return class ComponentWithTracking extends React.Component {
+//       state = {
+//         tracking: null,
+//       };
+  
+//       onTracking = () => {
+//         this.setState({ tracking: 'ABC' })
+//       }
+  
+//       render() {
+//         const { tracking } = this.state
+  
+//         return (
+//           <Component {...this.prop} tracking={tracking} onTracking={this.onTracking} />
+//         );
+//       }
+//     };
+//   };
+
+// function Login({
+//     onLogin
+// }) {
+function LoginScreen({
+        onLogin
+}){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
 
-    const hanldeLogin = () => {
+    const handleLogin = () => {
         if (email === '' || password === '') {
             setError(true)
         } else {
@@ -52,7 +83,7 @@ function LoginScreen({
                         fontWeight: '400',
                         marginTop: 4
                     }}>
-                        {'Sigin to contunue'}
+                        {'Sign in to continue'}
                     </Text>
                 </View>
                 <View style={{
@@ -93,13 +124,13 @@ function LoginScreen({
                         shadowRadius: 4,
                         elevation: 10 // only Android
                     }}
-                        onPress={hanldeLogin}
+                        onPress={handleLogin}
                     >
                         <Text style={{
                             color: '#ffffff',
                             fontWeight: '700',
                             fontSize: 15
-                        }}>Signin</Text>
+                        }}>Sign in</Text>
                     </TouchableOpacity>
                     <Text style={{
                         fontWeight: '700',

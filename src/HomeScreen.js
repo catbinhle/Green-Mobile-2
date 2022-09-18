@@ -1,92 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import PurchaseScreen from './PurchaseScreen';
+import SaleScreen from './SaleScreen';
+
+// const homeListScreen = ['Home', 'Sale', 'Purchase']
 
 function HomeScreen({
-    logOut,
-    SalesIn,
-    PurchIn
+    logout
 }) {
 
-    return (
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    const handleLogout = () => {
+        logout()
+    }
+
+    const handleScreenPress = (index) => {
+        setCurrentIndex(index)
+    }
+
+    const homeView = () => (
         <View style={styles.container}>
             <Text>Welcome Home Screen</Text>
             <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={SalesIn}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Sales Screen</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={PurchIn}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Purchase Screen</Text>
-                    </TouchableOpacity>                            
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={() => handleScreenPress(1)}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Sale</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={logOut}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Sign out</Text>
-                    </TouchableOpacity>
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={() => handleScreenPress(2)}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Purchase</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+                onPress={handleLogout}
+            >
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15
+                }}>Logout</Text>
+            </TouchableOpacity>
         </View>
+    )
+
+    return (
+        currentIndex === 0 ? homeView() : currentIndex === 1 ? <SaleScreen /> : <PurchaseScreen />
     )
 }
 
