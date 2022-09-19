@@ -10,14 +10,19 @@ function EnterText({
     style,
 }) {
     return (
+<<<<<<< HEAD
         <View style={[{
+=======
+        <View style={{
+            flexDirection: 'row',
+>>>>>>> bb96392f4a32c7d599b4246f4c26a4bbd74adad4
             marginTop: 10,
             height: 52,
             backgroundColor: 'white',
             marginHorizontal: 32,
             paddingHorizontal: 28,
-            alignItems: 'flex-start',
-            justifyContent: 'center',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
             borderRadius: 10,
             shadowColor: '#8C8C98',
             shadowOffset: {
@@ -32,6 +37,7 @@ function EnterText({
         },style]}>
             <TextInput
                 style={{
+                    flex: 1,
                     fontSize: 15,
                     fontWeight: '400',
                 }}
