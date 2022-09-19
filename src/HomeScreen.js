@@ -1,14 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-
-function HomeScreen({
-    logOut,
-    SalesIn,
-    PurchIn
-}) {
-=======
 import {
   Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity,
   View,
@@ -16,14 +7,13 @@ import {
 
 // const homeListScreen = ['Home', 'Sale', 'Purchase']
 const width = Dimensions.get('window').width
->>>>>>> 62960f47fb38ff714acba1bc21e8923a3ea7e036
 
 function HomeScreen({
+    
 }) {
 
     const homeView = () => (
         <View style={styles.container}>
-<<<<<<< HEAD
             <Text>Welcome Home Screen</Text>
             <TouchableOpacity style={{
                         marginHorizontal: 32,
@@ -100,9 +90,6 @@ function HomeScreen({
                             fontSize: 15
                         }}>Sign out</Text>
                     </TouchableOpacity>
-=======
-
->>>>>>> 62960f47fb38ff714acba1bc21e8923a3ea7e036
         </View>
     )
 

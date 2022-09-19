@@ -101,17 +101,13 @@ function Login({
                     <EnterText error={error} style={{}} placeholder={'Email'} onChange={(text) => {
                         setEmail(text)
                     }}/>
-<<<<<<< HEAD
                     <Text style={{
                         fontWeight: '700',
                         fontSize: 25,
                     }}>
                         
                     </Text>
-                    <EnterText isSecurity={true} placeholder={'Password'} onChange={(text) => {
-=======
                     <EnterText error={error} isSecurity={true} placeholder={'Password'} onChange={(text) => {
->>>>>>> 62960f47fb38ff714acba1bc21e8923a3ea7e036
                         setPassword(text)
                     }}/>
                     <Text style={{
