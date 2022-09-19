@@ -127,7 +127,6 @@ function HomeScreen({
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                backgroundColor: 'red'
 
             }}
             onPress={() => {

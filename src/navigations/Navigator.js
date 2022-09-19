@@ -1,9 +1,11 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import { Image } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Images from '../../assets';
 import HomeScreen from '../HomeScreen';
 import LoginScreen from '../LoginScreen';
 import PurchaseScreen from '../PurchaseScreen';
@@ -32,32 +34,44 @@ const TabsNavigator = ({events}) => (
     <Tabs.Navigator
     screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+            // let iconName;
+
+            // if (route.name === 'Home') {
+            //     iconName = 'home'
+            // } else if (route.name === 'News') {
+            //     iconName = 'film'
+            // } else {
+            //     iconName = 'bars'
+            // }
+            // return <Icon name={iconName} size={size} color={color}/>
+            let tabIcon
 
             if (route.name === 'Home') {
-                iconName = 'home'
-            } else if (route.name === 'News') {
-                iconName = 'film'
+                tabIcon = focused ? Images.tabs.homeActive : Images.tabs.homeInactive
+            } else if(route.name === 'Purchase') {
+                tabIcon = focused ? Images.tabs.homeActive : Images.tabs.homeInactive
             } else {
-                iconName = 'bars'
+                tabIcon = focused ? Images.tabs.homeActive : Images.tabs.homeInactive
             }
-            return <Icon name={iconName} size={size} color={color}/>
+            return <Image source={tabIcon} style={{width: size, height: size, resizeMode: 'cover'}}/>
         },
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: '#81898a',
-        size: 24,
+        // tabBarActiveTintColor: 'white',
+        // tabBarInactiveTintColor: '#81898a',
+        size: 20,
         headerShown: false,
         tabBarStyle: {
-            backgroundColor: '#7f5bc7'
+            // backgroundColor: '#7f5bc7'
+            backgroundColor: 'white'
         }
     })}
     >
         <Tabs.Screen 
+            options={{title: ""}} 
             name='Home' 
             component={() => <HomeScreen logout={() => events(false)}/> }
         />
-        <Tabs.Screen name='Purchase'  component={PurchaseScreen}/>
-        <Tabs.Screen name='Sale'  component={SaleScreen}/>
+        <Tabs.Screen options={{title: ""}}  name='Purchase'  component={PurchaseScreen}/>
+        <Tabs.Screen options={{title: ""}}  name='Sale'  component={SaleScreen}/>
     </Tabs.Navigator>
 )
 
