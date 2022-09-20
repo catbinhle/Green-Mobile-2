@@ -6,14 +6,31 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Images from '../../assets';
-import HomeScreen from '../HomeScreen';
 import LoginScreen from '../LoginScreen';
+import DetailScreen from '../modules/home/DetailScreen';
+import HomeScreen from '../modules/home/HomeScreen';
 import PurchaseScreen from '../PurchaseScreen';
 import SaleScreen from '../SaleScreen';
 import WelcomeScreen from '../WelcomeScreen';
 
 const LoginStack = createNativeStackNavigator()
+const HomeStack = createNativeStackNavigator()
 const Tabs = createBottomTabNavigator()
+
+const HomeStackNavigator = () => (
+    <HomeStack.Navigator
+    screenOptions={{
+        headerShown: true
+    }}
+>
+    <HomeStack.Screen 
+        name='Home' 
+        component={HomeScreen}/>
+    <HomeStack.Screen 
+        name='Detail' 
+        component={DetailScreen}/>
+</HomeStack.Navigator>
+)
 
 const LoginStackNavigator = ({events}) => (
     <LoginStack.Navigator
@@ -68,7 +85,7 @@ const TabsNavigator = ({events}) => (
         <Tabs.Screen 
             options={{title: ""}} 
             name='Home' 
-            component={() => <HomeScreen logout={() => events(false)}/> }
+            component={() => <HomeStackNavigator events={events}/> }
         />
         <Tabs.Screen options={{title: ""}}  name='Purchase'  component={PurchaseScreen}/>
         <Tabs.Screen options={{title: ""}}  name='Sale'  component={SaleScreen}/>

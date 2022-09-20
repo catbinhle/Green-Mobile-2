@@ -2,102 +2,103 @@ import React from 'react';
 
 import {
   Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity,
-  View,
 } from 'react-native';
 
 // const homeListScreen = ['Home', 'Sale', 'Purchase']
 const width = Dimensions.get('window').width
 
-function HomeScreen({
-    
-}) {
+function HomeScreen({navigation}) {
 
-    const homeView = () => (
-        <View style={styles.container}>
-            <Text>Welcome Home Screen</Text>
-            <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={SalesIn}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Sales Screen</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={PurchIn}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Purchase Screen</Text>
-                    </TouchableOpacity>                            
-            <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
-                        backgroundColor: '#0E4A86',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
-                    }}
-                         onPress={logOut}
-                    >
-                        <Text style={{
-                            color: '#ffffff',
-                            fontWeight: '700',
-                            fontSize: 15
-                        }}>Sign out</Text>
-                    </TouchableOpacity>
-        </View>
-    )
+    const handleItem = () => {
+        navigation.navigate('Detail')
+    }
+
+    // const homeView = () => (
+    //     <View style={styles.container}>
+    //         <Text>Welcome Home Screen</Text>
+    //         <TouchableOpacity style={{
+    //                     marginHorizontal: 32,
+    //                     marginTop: 10,
+    //                     height: 52,
+    //                     backgroundColor: '#0E4A86',
+    //                     justifyContent: 'center',
+    //                     alignItems: 'center',
+    //                     borderRadius: 10,
+    //                     shadowColor: '#8C8C98',
+    //                     shadowOffset: {
+    //                         width: 1,
+    //                         height: 1
+    //                     },
+    //                     shadowOpacity: 0.4,
+    //                     shadowRadius: 4,
+    //                     elevation: 10 // only Android
+    //                 }}
+    //                      onPress={SalesIn}
+    //                 >
+    //                     <Text style={{
+    //                         color: '#ffffff',
+    //                         fontWeight: '700',
+    //                         fontSize: 15
+    //                     }}>Sales Screen</Text>
+    //                 </TouchableOpacity>
+    //                 <TouchableOpacity style={{
+    //                     marginHorizontal: 32,
+    //                     marginTop: 10,
+    //                     height: 52,
+    //                     backgroundColor: '#0E4A86',
+    //                     justifyContent: 'center',
+    //                     alignItems: 'center',
+    //                     borderRadius: 10,
+    //                     shadowColor: '#8C8C98',
+    //                     shadowOffset: {
+    //                         width: 1,
+    //                         height: 1
+    //                     },
+    //                     shadowOpacity: 0.4,
+    //                     shadowRadius: 4,
+    //                     elevation: 10 // only Android
+    //                 }}
+    //                      onPress={PurchIn}
+    //                 >
+    //                     <Text style={{
+    //                         color: '#ffffff',
+    //                         fontWeight: '700',
+    //                         fontSize: 15
+    //                     }}>Purchase Screen</Text>
+    //                 </TouchableOpacity>                            
+    //         <TouchableOpacity style={{
+    //                     marginHorizontal: 32,
+    //                     marginTop: 10,
+    //                     height: 52,
+    //                     backgroundColor: '#0E4A86',
+    //                     justifyContent: 'center',
+    //                     alignItems: 'center',
+    //                     borderRadius: 10,
+    //                     shadowColor: '#8C8C98',
+    //                     shadowOffset: {
+    //                         width: 1,
+    //                         height: 1
+    //                     },
+    //                     shadowOpacity: 0.4,
+    //                     shadowRadius: 4,
+    //                     elevation: 10 // only Android
+    //                 }}
+    //                      onPress={logOut}
+    //                 >
+    //                     <Text style={{
+    //                         color: '#ffffff',
+    //                         fontWeight: '700',
+    //                         fontSize: 15
+    //                     }}>Sign out</Text>
+    //                 </TouchableOpacity>
+    //     </View>
+    // )
 
     const renderItemView = ({ item, index }) => {
         return (
             <TouchableOpacity style={{
                 flex: (index !== Data.length - 1) && 1,
-                width: (index === Data.length - 1) && (width - 8*4)/3,
+                width: (index === Data.length - 1) && (width - 8*3)/2,
                 marginHorizontal: 4,
                 marginVertical: 4,
                 borderRadius: 10,
@@ -116,9 +117,7 @@ function HomeScreen({
                 alignItems: 'center',
 
             }}
-            onPress={() => {
-
-            }}
+            onPress={handleItem}
             >
                 <Image 
                     source={{uri: item.image}}
@@ -149,7 +148,7 @@ function HomeScreen({
                 style={{
                     marginHorizontal: 4
                 }}
-                numColumns={3}
+                numColumns={2}
                 data={Data}
                 renderItem={renderItemView}
                 keyExtractor={(item, index) => index.toString()}
