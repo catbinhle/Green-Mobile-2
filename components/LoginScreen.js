@@ -7,10 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from './HomeScreen'
 
-const loginScreen = ({
-    onLogin,
-    navigation
-}) => {
+const LoginScreen = ({ navigation }) => {
+  
     const [email,setEmail] = useState('')
     const [pass,setPass] = useState('')
     const [errorEmail, setErrorEmail] = useState(false)
@@ -26,9 +24,9 @@ const loginScreen = ({
             setErrorPass(true)
             alert('Please input your password')
         }
-        else
-            //onLogin()
+        else{
             navigation.navigate('HomeScreen')
+        }
     }
 
     const handleShowPass = () => {
@@ -67,6 +65,7 @@ const loginScreen = ({
             onChangeText={(email)=>{setEmail(email)}}
             style={{fontSize:15}} 
             placeholder='Email Address'
+            autoCapitalize='none'
             ></TextInput>
         </View>
 
@@ -95,6 +94,7 @@ const loginScreen = ({
             secureTextEntry={secure} 
             style={{fontSize:15,width:'92%'}} 
             placeholder='Password'
+            autoCapitalize='none'
             ></TextInput>
 
             <TouchableOpacity onPress={handleShowPass} style={{alignItems:'center',justifyContent:'center'}}>
@@ -131,4 +131,4 @@ const loginScreen = ({
   )
 }
 
-export default loginScreen
+export default LoginScreen
