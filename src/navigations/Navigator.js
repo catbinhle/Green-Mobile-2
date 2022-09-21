@@ -20,14 +20,23 @@ const Tabs = createBottomTabNavigator()
 const HomeStackNavigator = () => (
     <HomeStack.Navigator
     screenOptions={{
-        headerShown: true
+        headerShown: true,
+        // header: () => (
+        //     <View style={{
+        //         backgroundColor: 'red',
+        //         height: 60
+        //     }}></View>
+        // )
     }}
 >
     <HomeStack.Screen 
         name='Home' 
         component={HomeScreen}/>
     <HomeStack.Screen 
-        name='Detail' 
+        options={({ route }) => ({ 
+            title: route.params.name 
+        })}
+        name='[Home]Detail' 
         component={DetailScreen}/>
 </HomeStack.Navigator>
 )
@@ -85,7 +94,7 @@ const TabsNavigator = ({events}) => (
         <Tabs.Screen 
             options={{title: ""}} 
             name='Home' 
-            component={() => <HomeStackNavigator events={events}/> }
+            component={HomeStackNavigator}
         />
         <Tabs.Screen options={{title: ""}}  name='Purchase'  component={PurchaseScreen}/>
         <Tabs.Screen options={{title: ""}}  name='Sale'  component={SaleScreen}/>

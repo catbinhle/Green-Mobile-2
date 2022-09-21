@@ -9,8 +9,8 @@ const width = Dimensions.get('window').width
 
 function HomeScreen({navigation}) {
 
-    const handleItem = () => {
-        navigation.navigate('Detail')
+    const handleItem = (item) => {
+        navigation.navigate('[Home]Detail', item)
     }
 
     // const homeView = () => (
@@ -97,8 +97,7 @@ function HomeScreen({navigation}) {
     const renderItemView = ({ item, index }) => {
         return (
             <TouchableOpacity style={{
-                flex: (index !== Data.length - 1) && 1,
-                width: (index === Data.length - 1) && (width - 8*3)/2,
+                width: '50%',
                 marginHorizontal: 4,
                 marginVertical: 4,
                 borderRadius: 10,
@@ -117,7 +116,7 @@ function HomeScreen({navigation}) {
                 alignItems: 'center',
 
             }}
-            onPress={handleItem}
+            onPress={() => handleItem(item)}
             >
                 <Image 
                     source={{uri: item.image}}
@@ -161,43 +160,53 @@ function HomeScreen({navigation}) {
 const Data = [
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
     {
         name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg'
+        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
+        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
     },
 ]
 
