@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import PurchaseScreen from './PurchaseScreen';
-import SalesScreen from './SalesScreen';
 import SaleScreen from './SaleScreen';
 
 // const homeListScreen = ['Home', 'Sale', 'Purchase']
