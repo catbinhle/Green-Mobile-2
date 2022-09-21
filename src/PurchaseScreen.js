@@ -22,43 +22,43 @@ function PurchaseScreen() {
           id: '20',
           name: 'Ha Noi',
           desc: 'Thu do',
-          img:require('../assets/hanoi.jpg')
+          img:require('')
         },
         {
           id: '50',
           name: 'Ho Chi Minh',
           desc: 'Thanh Pho',
-          img:require('../assets/hochiminh.jpg')
+          img:require('')
         },
         {
             id: '43',
             name: 'Da Nang',
             desc: 'Thanh Pho',
-            img:require('../assets/danang.jpg')
+            img:require('')
         },
         {
           id: '75',
           name: 'Hue',
           desc: 'Co do',
-          img:require('../assets/hue.jpg')
+          img:require('')
         },
         {
             id: '85',
             name: 'Phan Thiet',
             desc: 'Du lich',
-            img:require('../assets/phanthiet.jpg')
+            img:require('')
           },
           {
             id: '62',
             name: 'Long An',
             desc: 'Vua o',
-            img:require('../assets/hue.jpg')
+            img:require('')
           },
           {
               id: '63',
               name: 'Tien Giang',
               desc: 'Hau o',
-              img:require('../assets/phanthiet.jpg')
+              img:require('')
             },
       ];
       
