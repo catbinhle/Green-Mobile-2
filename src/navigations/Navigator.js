@@ -1,4 +1,6 @@
 // import Icon from 'react-native-vector-icons/FontAwesome';
+import { useContext } from 'react';
+
 import { Image } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -6,13 +8,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Images from '../../assets';
+import LoginContext from '../contexts/LoginContext';
 import LoginScreen from '../LoginScreen';
 import DetailScreen from '../modules/home/DetailScreen';
 import HomeScreen from '../modules/home/HomeScreen';
+import ToursScreen from '../modules/tours/ToursScreen';
 import PurchaseScreen from '../PurchaseScreen';
 import SaleScreen from '../SaleScreen';
 import WelcomeScreen from '../WelcomeScreen';
 
+const ToursStack = createNativeStackNavigator()
 const LoginStack = createNativeStackNavigator()
 const HomeStack = createNativeStackNavigator()
 const Tabs = createBottomTabNavigator()
@@ -41,7 +46,25 @@ const HomeStackNavigator = () => (
 </HomeStack.Navigator>
 )
 
-const LoginStackNavigator = ({events}) => (
+const ToursStackNavigator = () => (
+    <ToursStack.Navigator
+        screenOptions={{
+            headerShown: true,
+        }}
+    >
+    <ToursStack.Screen 
+        name='Tours' 
+        component={ToursScreen}/>
+    <ToursStack.Screen 
+        options={({ route }) => ({ 
+            title: route.params.name 
+        })}
+        name='[Tours]Detail' 
+        component={DetailScreen}/>
+    </ToursStack.Navigator>
+)
+
+const LoginStackNavigator = () => (
     <LoginStack.Navigator
         screenOptions={{
             headerShown: false
@@ -52,11 +75,11 @@ const LoginStackNavigator = ({events}) => (
             component={WelcomeScreen}/>
         <LoginStack.Screen 
             name='Login' 
-            component={() => <LoginScreen onLogin={() => events(true)}/>}/>
+            component={LoginScreen}/>
     </LoginStack.Navigator>
 )
 
-const TabsNavigator = ({events}) => (
+const TabsNavigator = () => (
     <Tabs.Navigator
     screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -96,23 +119,22 @@ const TabsNavigator = ({events}) => (
             name='Home' 
             component={HomeStackNavigator}
         />
+        <Tabs.Screen options={{title: ""}}  name='Tours'  component={ToursStackNavigator}/>
         <Tabs.Screen options={{title: ""}}  name='Purchase'  component={PurchaseScreen}/>
         <Tabs.Screen options={{title: ""}}  name='Sale'  component={SaleScreen}/>
     </Tabs.Navigator>
 )
 
-const Navigator = ({
-    isLogin,
-    events
-}) => {
+const Navigator = () => {
+    const {isLogin} = useContext(LoginContext)
     return (
         <NavigationContainer>
             {
             isLogin 
             ? 
-            <TabsNavigator events={events}/> 
+            <TabsNavigator/> 
             :
-            <LoginStackNavigator events={events}/>
+            <LoginStackNavigator />
             }
         </NavigationContainer>
     )
