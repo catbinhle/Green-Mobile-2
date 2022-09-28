@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import EnterText from './components/EnterText';
+import LoginContext from './contexts/LoginContext';
 
 // const useTracking = () => {
 //     const [tracking, setTracking] = useState();
@@ -12,51 +13,63 @@ import EnterText from './components/EnterText';
 //     return [ tracking, onTracking ];
 //   }
 
-const useTracking = (Component) => {
+// const useTracking = (Component) => {
     
-    const WrapperComponent = (props) => {
+//     const WrapperComponent = (props) => {
         
-        // const newProps = Object.keys(props).reduce((wrappedProps, key) => {
-        //     const value = props[key];
-        //     if (typeof value === `function`) {
-        //         return {
-        //             ...wrappedProps,
-        //             [key]: (...args) => {
-        //                 // console.log(`Event for: ${idKey} on ${key} with args ${args}`);
-        //                 value(...args)
-        //                 console.log('*******************')
-        //             }
-        //         };
-        //     } else {
-        //         console.log('*******************')
-        //         return { ... wrappedProps, [key]: value}
-        //     }
-        //     // console.log(Component)
-        // }, {})
-        useEffect(() => console.log('*******************'), [])
-        return <Component {...props}/>
-    }
+//         // const newProps = Object.keys(props).reduce((wrappedProps, key) => {
+//         //     const value = props[key];
+//         //     if (typeof value === `function`) {
+//         //         return {
+//         //             ...wrappedProps,
+//         //             [key]: (...args) => {
+//         //                 // console.log(`Event for: ${idKey} on ${key} with args ${args}`);
+//         //                 value(...args)
+//         //                 console.log('*******************')
+//         //             }
+//         //         };
+//         //     } else {
+//         //         console.log('*******************')
+//         //         return { ... wrappedProps, [key]: value}
+//         //     }
+//         //     // console.log(Component)
+//         // }, {})
+//         useEffect(() => console.log('*******************'), [])
+//         return <Component {...props}/>
+//     }
 
-    return WrapperComponent
-}
+//     return WrapperComponent
+// }
 
 // function Login({
 //     onLogin
 // }) {
-function Login({
-        onLogin
+function LoginScreen({
+        // onLogin //props
 }){
+    const {setIsLogin} = useContext(LoginContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState(false)
+    const [error, setError] = useState()
 
-    console.log('---------------')
+    useEffect(()=> {
+        console.log('***** START LOGIN')
+        return () => {
+            console.log('***** START HOME SCREEN')
+        }
+    }, [])
+
+    // useEffect(()=> {
+    //     console.log('***** Listen', error)
+    // }, [ error])
 
     const handleLogin = () => {
         if (email === '' || password === '') {
-            setError(true)
+            setError(!error)
         } else {
-            onLogin()
+            setIsLogin(true)
+            // validate(email)
+            // onLogin()
         }
     }
 
@@ -186,6 +199,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const LoginScreen = useTracking(Login)
+// const LoginScreen = useTracking(Login)
 
 export default LoginScreen

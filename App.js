@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { LogBox } from 'react-native';
 
+import LoginContext from './src/contexts/LoginContext';
 import Navigator from './src/navigations/Navigator';
 
 LogBox.ignoreAllLogs()
@@ -9,18 +10,17 @@ LogBox.ignoreLogs(['Warning: ...'])
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false)
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [])
+  // }, [])
 
-  const handleLogin = ({payload}) => {
-    setIsLogin(payload)
-  }
+  // const handleLogin = ({payload}) => {
+  //   setIsLogin(payload)
+  // }
 
   return (
-    <Navigator 
-      isLogin={isLogin}
-      events = {(payload) => handleLogin({payload: payload})}
-    />
+    <LoginContext.Provider value={{isLogin, setIsLogin}}>
+      <Navigator />
+    </LoginContext.Provider>
   )
 }

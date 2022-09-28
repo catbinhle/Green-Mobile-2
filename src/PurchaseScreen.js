@@ -2,10 +2,14 @@ import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 
-function PurchaseScreen() {
+import useSettingMode from './hooks/settingMode';
 
+function PurchaseScreen() {
+    const {mode, settingMode} = useSettingMode()
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {
+            backgroundColor: mode === 0 ? 'black' : 'white'
+        }]}>
             <Text>Welcome Purchase Screen</Text>
         </View>
     )

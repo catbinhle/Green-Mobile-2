@@ -3,6 +3,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 
 function EnterText({
+    //props
     isSecurity = false,
     placeholder,
     onChange,

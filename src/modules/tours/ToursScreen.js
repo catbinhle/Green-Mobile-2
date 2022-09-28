@@ -1,125 +1,43 @@
-import React from 'react';
+import { Component } from 'react';
 
-import {
-  Dimensions, FlatList, SafeAreaView, StyleSheet, Text,
-} from 'react-native';
+import { Dimensions, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 
 import ItemView from '../../components/ItemView';
-import useSettingMode from '../../hooks/settingMode';
 
-// const homeListScreen = ['Home', 'Sale', 'Purchase']
 const width = Dimensions.get('window').width
 
-function HomeScreen({navigation}) {
-    const {mode, settingMode} = useSettingMode()
-    const handleItem = (item) => {
-        navigation.navigate('[Home]Detail', item)
+class ToursScreen extends Component {
+
+    constructor(props) {
+        super(props) 
     }
 
-    // const homeView = () => (
-    //     <View style={styles.container}>
-    //         <Text>Welcome Home Screen</Text>
-    //         <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={SalesIn}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Sales Screen</Text>
-    //                 </TouchableOpacity>
-    //                 <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={PurchIn}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Purchase Screen</Text>
-    //                 </TouchableOpacity>                            
-    //         <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={logOut}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Sign out</Text>
-    //                 </TouchableOpacity>
-    //     </View>
-    // )
-
-    const renderItemView = ({ item, index }) => <ItemView item={item} width={width} onEvent={(item) => handleItem(item)}/>
-
-    return (
-        <SafeAreaView style={{
-            backgroundColor: mode === 0 ? 'black' : 'white'
-        }}>
-            <Text style={{
-                fontWeight: '700',
-                fontSize: 15,
-                margin: 20
-            }}>Maui bay Popular Destination</Text>
-            <FlatList
-                style={{
-                    marginHorizontal: 4
-                }}
-                numColumns={2}
-                data={Data}
-                renderItem={renderItemView}
-                keyExtractor={(item, index) => index.toString()}
-            />
-
-        </SafeAreaView>
+    renderItemView = ({ item, index }) => (
+        <ItemView 
+            item={item} 
+            width={width}
+            onEvent={(item) => {
+                this.props.navigation.navigate('[Tours]Detail', item)
+            }}
+        />
     )
+
+    render() {
+        return (
+            <SafeAreaView>
+                <FlatList
+                    style={{
+                        marginHorizontal: 4
+                    }}
+                    numColumns={2}
+                    data={Data}
+                    renderItem={this.renderItemView}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+    
+            </SafeAreaView>
+        )
+    }
 }
 
 const Data = [
@@ -210,4 +128,5 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+
+export default ToursScreen

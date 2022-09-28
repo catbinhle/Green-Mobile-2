@@ -2,10 +2,14 @@ import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 
-function SaleScreen() {
+import useSettingMode from './hooks/settingMode';
 
+function SaleScreen() {
+    const {mode, settingMode} = useSettingMode()
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {
+            backgroundColor: mode === 0 ? 'black' : 'white',
+        }]}>
             <Text>Welcome Sale Screen</Text>
         </View>
     )
@@ -14,7 +18,6 @@ function SaleScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'green',
         justifyContent: 'center',
         alignItems: 'center'
     },
