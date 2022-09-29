@@ -24,8 +24,6 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   
   return (
-      //login?<HomeScreen onLogout={handleLogout}/>:<LoginScreen onLogin={handleLogin}/>
-      //<PackageScreen/>
       
       <Navigator/>
     
