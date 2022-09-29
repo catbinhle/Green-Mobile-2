@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-class ItemView extends Component {
+class ItemView extends PureComponent {
 
     constructor(props) {
         super(props)
