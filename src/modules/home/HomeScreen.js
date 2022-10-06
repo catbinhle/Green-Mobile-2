@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Dimensions, FlatList, SafeAreaView, StyleSheet, Text,
@@ -12,90 +12,26 @@ const width = Dimensions.get('window').width
 
 function HomeScreen({navigation}) {
     const {mode, settingMode} = useSettingMode()
+    const [tourData, setTourData] = useState([])
+
+    useEffect(() => {
+        getAPI()
+    }, [])
+
+    const getAPI = () => {
+        fetch('https://cattechsolutions.com/maui.json')
+        .then((response) => response.json())
+        .then((json) => {
+            setTourData(json)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    } 
+
     const handleItem = (item) => {
         navigation.navigate('[Home]Detail', item)
     }
-
-    // const homeView = () => (
-    //     <View style={styles.container}>
-    //         <Text>Welcome Home Screen</Text>
-    //         <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={SalesIn}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Sales Screen</Text>
-    //                 </TouchableOpacity>
-    //                 <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={PurchIn}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Purchase Screen</Text>
-    //                 </TouchableOpacity>                            
-    //         <TouchableOpacity style={{
-    //                     marginHorizontal: 32,
-    //                     marginTop: 10,
-    //                     height: 52,
-    //                     backgroundColor: '#0E4A86',
-    //                     justifyContent: 'center',
-    //                     alignItems: 'center',
-    //                     borderRadius: 10,
-    //                     shadowColor: '#8C8C98',
-    //                     shadowOffset: {
-    //                         width: 1,
-    //                         height: 1
-    //                     },
-    //                     shadowOpacity: 0.4,
-    //                     shadowRadius: 4,
-    //                     elevation: 10 // only Android
-    //                 }}
-    //                      onPress={logOut}
-    //                 >
-    //                     <Text style={{
-    //                         color: '#ffffff',
-    //                         fontWeight: '700',
-    //                         fontSize: 15
-    //                     }}>Sign out</Text>
-    //                 </TouchableOpacity>
-    //     </View>
-    // )
 
     const renderItemView = ({ item, index }) => <ItemView item={item} width={width} onEvent={(item) => handleItem(item)}/>
 
@@ -113,7 +49,7 @@ function HomeScreen({navigation}) {
                     marginHorizontal: 4
                 }}
                 numColumns={2}
-                data={Data}
+                data={tourData}
                 renderItem={renderItemView}
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -121,59 +57,6 @@ function HomeScreen({navigation}) {
         </SafeAreaView>
     )
 }
-
-const Data = [
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-    {
-        name: 'Phu Quoc - Kien Giang - Vietnam',
-        image: 'https://statics.vinpearl.com/du-lich-phu-quoc-2-ngay-1-dem-1_1645345403.jpg',
-        desc: 'Phu Quoc\'s gleaming white sand beaches have earned it the nickname "Pearl Island", but the island\'s environmental conservation efforts and cultural heritage deserve as much attention as its picturesque sand and surf. Fishing and agriculture remain primary industries, and more than half the laid-back island has been protected by a UNESCO Biosphere Reserve since 2006.'
-    },
-]
 
 const styles = StyleSheet.create({
     container: {

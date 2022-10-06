@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 class ItemView extends PureComponent {
 
@@ -30,6 +30,18 @@ class ItemView extends PureComponent {
                         resizeMode: 'cover'
                     }}
                 />
+                <View style={{
+                    position: 'absolute',
+                    height: '100%',
+                    width: '100%',
+                    top: 0,
+                    left: 0,
+                    justifyContent: 'flex-end'
+                }}>
+                    <Text style={{
+                        color: 'red'
+                    }}>ABCDEDFR</Text>
+                </View>
             </TouchableOpacity>
         )
     }
@@ -54,7 +66,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-
     }
 });
 
