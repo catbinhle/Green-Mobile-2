@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 
-import useSettingMode from './hooks/settingMode';
+import useSettingMode from '../hooks/settingMode';
 
 function SaleScreen() {
     const {mode, settingMode} = useSettingMode()
