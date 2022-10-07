@@ -1,21 +1,18 @@
-// import Icon from 'react-native-vector-icons/FontAwesome';
-import { useContext } from 'react';
-
 import { Image } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Images from '../../assets';
-import LoginContext from '../contexts/LoginContext';
-import LoginScreen from '../LoginScreen';
 import DetailScreen from '../modules/home/DetailScreen';
 import HomeScreen from '../modules/home/HomeScreen';
+import LoginScreen from '../modules/LoginScreen';
+import PurchaseScreen from '../modules/PurchaseScreen';
+import SaleScreen from '../modules/SaleScreen';
 import ToursScreen from '../modules/tours/ToursScreen';
-import PurchaseScreen from '../PurchaseScreen';
-import SaleScreen from '../SaleScreen';
-import WelcomeScreen from '../WelcomeScreen';
+import WelcomeScreen from '../modules/WelcomeScreen';
 
 const ToursStack = createNativeStackNavigator()
 const LoginStack = createNativeStackNavigator()
@@ -125,12 +122,13 @@ const TabsNavigator = () => (
     </Tabs.Navigator>
 )
 
+
 const Navigator = () => {
-    const {isLogin} = useContext(LoginContext)
+    const app = useSelector(state => state.app) 
     return (
         <NavigationContainer>
             {
-            isLogin 
+            app?.isLogin 
             ? 
             <TabsNavigator/> 
             :

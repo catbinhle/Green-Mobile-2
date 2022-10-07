@@ -14,10 +14,10 @@ function WelcomeScreen({navigation}) {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <Image style={styles.backgroundImg}
-                source={require('../assets/welcomes/bg.png')} />
+                source={require('../../assets/welcomes/bg.png')} />
             <View style={styles.centerObj}>
                 <Image style={styles.centerImg}
-                    source={require('../assets/welcomes/welcome1.png')} />
+                    source={require('../../assets/welcomes/welcome1.png')} />
                 <View style={{
                     flex: 1,
                     width: '100%',

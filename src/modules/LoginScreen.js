@@ -1,56 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-import EnterText from './components/EnterText';
-import LoginContext from './contexts/LoginContext';
+import { appLogin } from '../actions/AppAction';
+import EnterText from '../components/EnterText';
 
-// const useTracking = () => {
-//     const [tracking, setTracking] = useState();
-  
-//     const onTracking = (payload) => setTracking(payload)
-  
-//     return [ tracking, onTracking ];
-//   }
-
-// const useTracking = (Component) => {
-    
-//     const WrapperComponent = (props) => {
-        
-//         // const newProps = Object.keys(props).reduce((wrappedProps, key) => {
-//         //     const value = props[key];
-//         //     if (typeof value === `function`) {
-//         //         return {
-//         //             ...wrappedProps,
-//         //             [key]: (...args) => {
-//         //                 // console.log(`Event for: ${idKey} on ${key} with args ${args}`);
-//         //                 value(...args)
-//         //                 console.log('*******************')
-//         //             }
-//         //         };
-//         //     } else {
-//         //         console.log('*******************')
-//         //         return { ... wrappedProps, [key]: value}
-//         //     }
-//         //     // console.log(Component)
-//         // }, {})
-//         useEffect(() => console.log('*******************'), [])
-//         return <Component {...props}/>
-//     }
-
-//     return WrapperComponent
-// }
-
-// function Login({
-//     onLogin
-// }) {
-function LoginScreen({
-        // onLogin //props
-}){
-    const {setIsLogin} = useContext(LoginContext)
+function LoginScreen(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState()
+    const dispatch = useDispatch() 
 
     useEffect(()=> {
         console.log('***** START LOGIN')
@@ -59,34 +19,28 @@ function LoginScreen({
         }
     }, [])
 
-    // useEffect(()=> {
-    //     console.log('***** Listen', error)
-    // }, [ error])
-
     const handleLogin = () => {
         if (email === '' || password === '') {
             setError(!error)
         } else {
-            setIsLogin(true)
-            // validate(email)
-            // onLogin()
+            dispatch(appLogin())
         }
     }
 
-    const validate = (text) => {
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-        if (reg.test(text) === false) {
-            setEmail("Validate")
-        }
-        else {
-            setEmail("Not validate")
-        }
-      }
+    // const validate = (text) => {
+    //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    //     if (reg.test(text) === false) {
+    //         setEmail("Validate")
+    //     }
+    //     else {
+    //         setEmail("Not validate")
+    //     }
+    //   }
 
     return (
         <View style={styles.container}>
             <Image style={styles.backgroundImg}
-                source={require('../assets/welcomes/bg.png')} />
+                source={require('../../assets/welcomes/bg.png')} />
 
             <View style={styles.centerObj}>
                 <View style={{
