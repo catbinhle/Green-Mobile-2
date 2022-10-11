@@ -23,7 +23,7 @@ function LoginScreen(){
         if (email === '' || password === '') {
             setError(!error)
         } else {
-            dispatch(appLogin())
+            dispatch(appLogin(true))
         }
     }
 

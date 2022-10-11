@@ -3,8 +3,11 @@ import { Component } from 'react';
 import {
   Dimensions, FlatList, SafeAreaView, StyleSheet, View,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Images from '../../../assets';
+import { appLogout } from '../../actions/AppAction';
 import BarButton from '../../components/BarButton';
 import ItemView from '../../components/ItemView';
 
@@ -71,6 +74,9 @@ class ToursScreen extends Component {
             onEvent={(item) => {
                 const {navigation} = this.props
                 navigation.navigate('[Tours]Detail', item)
+                // const {appLogout} = this.props
+                // appLogout()
+
             }}
         />
     )
@@ -98,6 +104,8 @@ class ToursScreen extends Component {
 
     componentDidMount() {
         this.getAPI()
+        const {app, home} = this.props
+        console.log(home)
     }
     componentWillUnmount() {
         console.log('****** Tours Closed')
@@ -165,4 +173,16 @@ const styles = StyleSheet.create({
 });
 
 
-export default ToursScreen
+const mapStateToProps = state => {
+    const {app, home} = state
+    return {app, home}
+}
+
+const mapDispatchToProps = (dispatch) => (
+    bindActionCreators({
+        appLogout,
+    }, dispatch)
+)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToursScreen)
