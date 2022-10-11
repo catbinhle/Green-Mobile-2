@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import {
   Dimensions, FlatList, SafeAreaView, StyleSheet, Text,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { homeGetAPI } from '../../actions/HomeAction';
 import ItemView from '../../components/ItemView';
 import useSettingMode from '../../hooks/settingMode';
 
@@ -12,7 +14,8 @@ const width = Dimensions.get('window').width
 
 function HomeScreen({navigation}) {
     const {mode, settingMode} = useSettingMode()
-    const [tourData, setTourData] = useState([])
+    const dispatch = useDispatch()
+    const home = useSelector(state => state.home)  
 
     useEffect(() => {
         getAPI()
@@ -22,7 +25,7 @@ function HomeScreen({navigation}) {
         fetch('https://cattechsolutions.com/maui.json')
         .then((response) => response.json())
         .then((json) => {
-            setTourData(json)
+            dispatch(homeGetAPI(json))
         })
         .catch((error) => {
             console.error(error)
@@ -49,7 +52,7 @@ function HomeScreen({navigation}) {
                     marginHorizontal: 4
                 }}
                 numColumns={2}
-                data={tourData}
+                data={home?.homeData}
                 renderItem={renderItemView}
                 keyExtractor={(item, index) => index.toString()}
             />
