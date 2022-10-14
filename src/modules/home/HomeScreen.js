@@ -18,19 +18,8 @@ function HomeScreen({navigation}) {
     const home = useSelector(state => state.home)  
 
     useEffect(() => {
-        getAPI()
+        dispatch(homeGetAPI())
     }, [])
-
-    const getAPI = () => {
-        fetch('https://cattechsolutions.com/maui.json')
-        .then((response) => response.json())
-        .then((json) => {
-            dispatch(homeGetAPI(json))
-        })
-        .catch((error) => {
-            console.error(error)
-        })
-    } 
 
     const handleItem = (item) => {
         navigation.navigate('[Home]Detail', item)
