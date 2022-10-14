@@ -13,7 +13,7 @@ import rootReducer from '../reducers';
 
 //**** Notes: dùng @reduxjs/toolkit'
 const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
 })
 
 export default store
