@@ -1,4 +1,5 @@
-import { HOME_GET_API } from '../defines/ActionTypes';
+import { HOME_GET_API, TOURS_GET_API_SUCCESS } from '../defines/ActionTypes';
+import { api } from '../servers/API';
 
 export const homeGetAPISuccess = (params) => (
     {
@@ -7,16 +8,25 @@ export const homeGetAPISuccess = (params) => (
     }
 )
 
-export const homeGetAPI = () => (
-    async (dispatch, getState) => {
-        console.log('BINH GREEN: ', getState().app)
-        fetch('https://cattechsolutions.com/maui.json')
-        .then((response) => response.json())
-        .then((json) => {
-            dispatch(homeGetAPISuccess(json))
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+export const toursGetAPISuccess = (params) => (
+    {
+        type: TOURS_GET_API_SUCCESS,
+        payload: params
     }
+)
+
+export const homeGetAPI = () => (
+    api({
+        uri: 'https://cattechsolutions.com/maui.json', 
+        successAction: (json) => homeGetAPISuccess(json),
+        failAction: (error) => console.error(error)
+    })
+)
+
+export const toursGetAPI = () => (
+    api({
+        uri: 'https://cattechsolutions.com/tours.json', 
+        successAction: (json) => toursGetAPISuccess(json),
+        failAction: (error) => console.error(error)
+    })
 )
