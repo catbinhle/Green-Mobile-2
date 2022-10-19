@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 
 import Images from '../../../assets';
 import { appLogout } from '../../actions/AppAction';
+import { toursGetAPI } from '../../actions/HomeAction';
 import BarButton from '../../components/BarButton';
 import ItemView from '../../components/ItemView';
 
@@ -41,23 +42,12 @@ class ToursScreen extends Component {
         super(props) 
         this.state = {
             currentBarIndex: 0,
-            toursData: []
         }
     }
 
-    getAPI = () => {
-        fetch('https://cattechsolutions.com/tours.json')
-        .then((response) => response.json())
-        .then((json) => {
-            this.setState({...this.state, toursData: json})
-        })
-        .catch((error) => {
-            console.error(error)
-        })
-    }
-
     filterData = () => {
-        const {currentBarIndex, toursData} = this.state
+        const {currentBarIndex} = this.state
+        const {toursData} = this.props.home
         if (currentBarIndex === 0) return toursData
         return toursData.filter((item, index) => item.type === tabButtons[currentBarIndex].title)
     }
@@ -103,9 +93,9 @@ class ToursScreen extends Component {
     }
 
     componentDidMount() {
-        this.getAPI()
-        const {app, home} = this.props
+        const {app, home, toursGetAPI} = this.props
         console.log(home)
+        toursGetAPI()
     }
     componentWillUnmount() {
         console.log('****** Tours Closed')
@@ -181,6 +171,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
         appLogout,
+        toursGetAPI
     }, dispatch)
 )
 
