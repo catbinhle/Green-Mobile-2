@@ -14,6 +14,13 @@ export const toursGetAPISuccess = (params) => (
         payload: params
     }
 )
+// export const updateUploadFie = (params) => (
+//     {
+//         type: UPDATE_PROGRESS_UPLOAD,
+//         payload: params
+//     }
+// )
+
 
 export const homeGetAPI = () => (
     api({

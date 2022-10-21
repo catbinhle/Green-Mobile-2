@@ -12,10 +12,10 @@ LogBox.ignoreLogs(['Warning: ...'])
 export default function App() {
 
   //**** Notes: dùng @reduxjs/toolkit' thì khônng cần hàm này
-  // let configureStore = store()
+  let configureStore = store()
 
   return (
-    <Provider store={store}>
+    <Provider store={configureStore}>
       <Navigator />
     </Provider>
   )
