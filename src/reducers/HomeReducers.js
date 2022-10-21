@@ -1,4 +1,6 @@
-import { HOME_GET_API, TOURS_GET_API_SUCCESS } from '../defines/ActionTypes';
+import {
+  HOME_GET_API_SUCCESS, TOURS_GET_API_SUCCESS,
+} from '../defines/ActionTypes';
 
 const initialState = {
     homeData: [],
@@ -7,7 +9,7 @@ const initialState = {
 
 const homeReducer = (state = initialState, action) => {
     switch(action.type) {
-        case HOME_GET_API: 
+        case HOME_GET_API_SUCCESS: 
             return {...state, homeData: action.payload}
         case TOURS_GET_API_SUCCESS:
             return {...state, toursData: action.payload}

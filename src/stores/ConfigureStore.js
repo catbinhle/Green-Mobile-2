@@ -1,16 +1,20 @@
 import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
 
+import createSagaMiddleware from '@redux-saga/core';
+
+import appSaga from '../middleware/appSaga';
 // import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from '../reducers';
 
 //**** Notes: dùng createStore của Redux
+const sagaMiddleware = createSagaMiddleware()
 const configureStore = (initialState) => {
     const store = createStore(
         rootReducer, 
         initialState,
-        applyMiddleware(thunk)
+        applyMiddleware(sagaMiddleware)
     )
+    sagaMiddleware.run(appSaga)
     return store
 }
 
