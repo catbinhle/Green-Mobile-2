@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Image, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
+import { io } from 'socket.io-client';
+
+// var socket = new WebSocket('ws://172.31.98.148:3000');
+const socket = io("ws://172.31.98.148:3000")
 
 function WelcomeScreen({navigation}) {
+    const [message, setMessage] = useState('')
+    useEffect(()=> {
+
+        console.log('TEST Socket IO', socket)
+        
+        // socket.addEventListener('message', (event) => {
+        //     console.log('Message from server: ', event?.data);
+        // })
+        socket.on("chat message", (...args) => {
+            console.log('Message from server: ', args);
+        });
+        
+    }, [])
+    useEffect(()=> {
+        console.log(message);
+        // socket.addEventListener('open', () => {
+        //     socket.send(message);
+        // });
+        socket.emit("chat message", message)
+    }, [message])
 
     const handleMoveLoginScreen = () => {
-        navigation.navigate('Login')
+        // navigation.navigate('Login')
+        setMessage('Hello! Mobile Testing')
     }
 
     return (
