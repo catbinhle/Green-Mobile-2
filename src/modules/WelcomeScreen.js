@@ -4,7 +4,22 @@ import {
   Image, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 function WelcomeScreen({navigation}) {
+
+    // useEffect(() => {
+    //     getIsFirstLaunchStore()
+    // }, [])
+
+    const start = async () => {
+        try {
+            await AsyncStorage.setItem('isFirstLaunch', JSON.stringify(true))
+            handleMoveLoginScreen()
+          } catch (e) {
+            // saving error
+          }
+    }
 
     const handleMoveLoginScreen = () => {
         navigation.navigate('Login')
@@ -51,7 +66,7 @@ function WelcomeScreen({navigation}) {
                         shadowRadius: 4,
                         elevation: 10 // only Android
                     }}
-                        onPress={handleMoveLoginScreen}
+                        onPress={start}
                     >
                         <Text style={{
                             color: '#ffffff',

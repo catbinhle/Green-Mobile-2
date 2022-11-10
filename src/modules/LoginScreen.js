@@ -23,7 +23,11 @@ function LoginScreen(){
         if (email === '' || password === '') {
             setError(!error)
         } else {
-            dispatch(appLogin(true))
+            dispatch(appLogin({
+                username: email,
+                password: password,
+                fcm: ""
+            }))
         }
     }
 

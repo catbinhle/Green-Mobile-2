@@ -1,5 +1,7 @@
 //APP Action
 export const APP_LOGIN = 'APP_LOGIN'
+export const APP_LOGIN_SUCCESS = 'APP_LOGIN_SUCCESS'
+export const APP_LOGIN_FAIL = 'APP_LOGIN_FAIL'
 export const APP_LOGOUT = 'APP_LOGOUT'
 
 //Home Action

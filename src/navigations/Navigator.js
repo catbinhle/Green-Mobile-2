@@ -1,11 +1,15 @@
-import { Image } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
+import { Image, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Images from '../../assets';
+import { appAutoLogin } from '../actions/AppAction';
 import DetailScreen from '../modules/home/DetailScreen';
 import HomeScreen from '../modules/home/HomeScreen';
 import LoginScreen from '../modules/LoginScreen';
@@ -61,20 +65,23 @@ const ToursStackNavigator = () => (
     </ToursStack.Navigator>
 )
 
-const LoginStackNavigator = () => (
-    <LoginStack.Navigator
-        screenOptions={{
-            headerShown: false
-        }}
-    >
-        <LoginStack.Screen 
-            name='Welcome' 
-            component={WelcomeScreen}/>
-        <LoginStack.Screen 
-            name='Login' 
-            component={LoginScreen}/>
-    </LoginStack.Navigator>
-)
+const LoginStackNavigator = ({isIgnoreWelcome}) => {
+    return (
+        <LoginStack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+            initialRouteName={isIgnoreWelcome ? 'Login' : 'Welcome'}
+        >
+            <LoginStack.Screen 
+                name='Welcome' 
+                component={WelcomeScreen}/>
+            <LoginStack.Screen 
+                name='Login' 
+                component={LoginScreen}/>
+        </LoginStack.Navigator>
+    )
+} 
 
 const TabsNavigator = () => (
     <Tabs.Navigator
@@ -125,14 +132,60 @@ const TabsNavigator = () => (
 
 const Navigator = () => {
     const app = useSelector(state => state.app) 
+    const [isFlashScreen, setIsFlashScreen] = useState(true)
+    const [isIgnoreWelcome, setIsIgnoreWelcome] = useState(false)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const getIsLoginStore = async () => {
+            try {
+                const accountValue = await AsyncStorage.getItem('@AppAccount')
+                if (accountValue) {
+                    dispatch(appAutoLogin(JSON.parse(accountValue)))
+                    setIsFlashScreen(false)
+                    setIsIgnoreWelcome(true)
+                } else {
+                    getIsIgnoreWelcomeScreenStore()
+                }
+
+            } catch(e) {
+              // error reading value
+            }
+        }
+
+        const getIsIgnoreWelcomeScreenStore = async () => {
+            try {
+                const stringValue = await AsyncStorage.getItem('isFirstLaunch')
+                if (stringValue) {
+                    setIsIgnoreWelcome(true)
+                }
+                setIsFlashScreen(false)
+            } catch(e) {
+              // error reading value
+            }
+        }
+        getIsLoginStore()
+    },[])
+
+    if (isFlashScreen)  {
+        return (
+            <NavigationContainer>
+                <View style={{
+                    flex: 1, 
+                    backgroundColor: 'red'
+                }}>
+                </View>
+            </NavigationContainer>
+        )
+    }
+
     return (
         <NavigationContainer>
             {
-            app?.isLogin 
+            app?.account?.token
             ? 
             <TabsNavigator/> 
             :
-            <LoginStackNavigator />
+            <LoginStackNavigator isIgnoreWelcome={isIgnoreWelcome}/>
             }
         </NavigationContainer>
     )

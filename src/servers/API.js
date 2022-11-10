@@ -46,9 +46,27 @@
 // Dùng Axios
 import axios from 'axios';
 
-export const api =  async ({uri, method = 'GET', param = {}}) => (
+export const apiPOST =  async ({uri, param = null}) => (
     axios({
-        method: method,
+        method: 'POST',
+        url: uri,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        data: param,
+        timeout: 60000,
+    }).then(function (response) {
+        return response
+    }).catch((error) => {
+        return error
+    })
+)
+
+
+export const apiGET =  async ({uri}) => (
+    axios({
+        method: 'GET',
         url: uri,
         headers: {
             Accept: 'application/json',
