@@ -9,10 +9,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Images from '../../assets';
-import { appAutoLogin } from '../actions/AppAction';
+import { appLogin } from '../actions/AppAction';
 import DetailScreen from '../modules/home/DetailScreen';
 import HomeScreen from '../modules/home/HomeScreen';
+import PostHomeScreen from '../modules/home/PostHomeScreen';
 import LoginScreen from '../modules/LoginScreen';
+import ProfileScreen from '../modules/profile/ProfileScreen';
 import PurchaseScreen from '../modules/PurchaseScreen';
 import SaleScreen from '../modules/SaleScreen';
 import ToursScreen from '../modules/tours/ToursScreen';
@@ -44,6 +46,12 @@ const HomeStackNavigator = () => (
         })}
         name='[Home]Detail' 
         component={DetailScreen}/>
+    <HomeStack.Screen 
+        name='[Home]Post' 
+        options={({ route }) => ({ 
+            title: 'POST'
+        })}
+        component={PostHomeScreen}/>
 </HomeStack.Navigator>
 )
 
@@ -126,6 +134,7 @@ const TabsNavigator = () => (
         <Tabs.Screen options={{title: ""}}  name='Tours'  component={ToursStackNavigator}/>
         <Tabs.Screen options={{title: ""}}  name='Purchase'  component={PurchaseScreen}/>
         <Tabs.Screen options={{title: ""}}  name='Sale'  component={SaleScreen}/>
+        <Tabs.Screen options={{title: ""}}  name='Profile'  component={ProfileScreen}/>
     </Tabs.Navigator>
 )
 
@@ -140,7 +149,8 @@ const Navigator = () => {
             try {
                 const accountValue = await AsyncStorage.getItem('@AppAccount')
                 if (accountValue) {
-                    dispatch(appAutoLogin(JSON.parse(accountValue)))
+                    console.log('Debug account: ', accountValue)
+                    dispatch(appLogin(JSON.parse(accountValue)))
                     setIsFlashScreen(false)
                     setIsIgnoreWelcome(true)
                 } else {

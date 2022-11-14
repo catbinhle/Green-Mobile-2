@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 
 import {
-  Dimensions, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity,
+  Dimensions, FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { appLogout } from '../../actions/AppAction';
 import { homeGetAPI } from '../../actions/HomeAction';
 import ItemView from '../../components/ItemView';
 import useSettingMode from '../../hooks/settingMode';
@@ -16,18 +15,23 @@ const width = Dimensions.get('window').width
 function HomeScreen({navigation}) {
     const {mode, settingMode} = useSettingMode()
     const dispatch = useDispatch()
+    const app = useSelector(state => state.app)  
     const home = useSelector(state => state.home)  
 
     useEffect(() => {
         dispatch(homeGetAPI())
     }, [])
 
-    const handleLogout = () => {
-        dispatch(appLogout())
-    }
-
     const handleItem = (item) => {
         navigation.navigate('[Home]Detail', item)
+    }
+
+    const handlePost = () => {
+        navigation.navigate('[Home]Post')
+    }
+
+    const handleRefresh = () => {
+        dispatch(homeGetAPI())
     }
 
     const renderItemView = ({ item, index }) => <ItemView item={item} width={width} onEvent={(item) => handleItem(item)}/>
@@ -36,36 +40,30 @@ function HomeScreen({navigation}) {
         <SafeAreaView style={{
             backgroundColor: mode === 0 ? 'black' : 'white'
         }}>
-                        <TouchableOpacity style={{
-                        marginHorizontal: 32,
-                        marginTop: 10,
-                        height: 52,
+            <View style={styles.headerView}>
+                <Text style={{
+                    fontWeight: '700',
+                    fontSize: 15,
+                    margin: 20
+                }}>Maui bay Popular Destination</Text>
+                <TouchableOpacity style={{
+                        height: 40,
+                        width: 40,
                         backgroundColor: 'red',
                         justifyContent: 'center',
                         alignItems: 'center',
                         borderRadius: 10,
-                        shadowColor: '#8C8C98',
-                        shadowOffset: {
-                            width: 1,
-                            height: 1
-                        },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 4,
-                        elevation: 10 // only Android
                     }}
-                        onPress={handleLogout}
+                        onPress={handlePost}
                     >
                         <Text style={{
                             color: '#ffffff',
                             fontWeight: '700',
-                            fontSize: 15
-                        }}>Logout</Text>
+                            fontSize: 22
+                        }}>+</Text>
             </TouchableOpacity>
-            <Text style={{
-                fontWeight: '700',
-                fontSize: 15,
-                margin: 20
-            }}>Maui bay Popular Destination</Text>
+            </View>
+
             <FlatList
                 style={{
                     marginHorizontal: 4
@@ -74,6 +72,8 @@ function HomeScreen({navigation}) {
                 data={home?.homeData}
                 renderItem={renderItemView}
                 keyExtractor={(item, index) => index.toString()}
+                refreshing = {app?.isLoadng}
+                onRefresh = {handleRefresh}
             />
 
         </SafeAreaView>
@@ -85,6 +85,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
+        alignItems: 'center'
+    },
+    headerView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center'
     },
     backgroundImg: {

@@ -23,7 +23,7 @@ class ItemView extends PureComponent {
                 // onPress={() => handleItem(item)}
             >
                 <Image 
-                    source={{uri: item.image}}
+                    source={{uri: item?.images[0] || ""}}
                     style={{
                         flex: 1,
                         height: (width - 40) * 2 / 3 ,
@@ -40,7 +40,7 @@ class ItemView extends PureComponent {
                 }}>
                     <Text style={{
                         color: 'red'
-                    }}>ABCDEDFR</Text>
+                    }}>{item?.title}</Text>
                 </View>
             </TouchableOpacity>
         )

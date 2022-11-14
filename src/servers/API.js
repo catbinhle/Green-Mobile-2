@@ -46,13 +46,14 @@
 // Dùng Axios
 import axios from 'axios';
 
-export const apiPOST =  async ({uri, param = null}) => (
+export const apiPOST =  async ({uri, param = null, auth = ''}) => (
     axios({
         method: 'POST',
         url: uri,
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth}`,
         },
         data: param,
         timeout: 60000,
@@ -64,13 +65,14 @@ export const apiPOST =  async ({uri, param = null}) => (
 )
 
 
-export const apiGET =  async ({uri}) => (
+export const apiGET =  async ({uri, auth}) => (
     axios({
         method: 'GET',
         url: uri,
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth}`,
         },
         timeout: 60000,
     }).then(function (response) {

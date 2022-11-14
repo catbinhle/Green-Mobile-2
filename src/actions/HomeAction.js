@@ -1,4 +1,6 @@
-import { HOME_GET_API, TOURS_GET_API } from '../defines/ActionTypes';
+import {
+  HOME_GET_API, HOME_POST_API, TOURS_GET_API,
+} from '../defines/ActionTypes';
 
 // export const homeGetAPISuccess = (params) => (
 //     {
@@ -24,6 +26,13 @@ import { HOME_GET_API, TOURS_GET_API } from '../defines/ActionTypes';
 export const homeGetAPI = () => (
     {
         type: HOME_GET_API,
+    }
+)
+
+export const homePostAPI = (param) => (
+    {
+        type: HOME_POST_API,
+        payload: param
     }
 )
 
